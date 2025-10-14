@@ -7,9 +7,9 @@ import time
 import threading
 import platform
 from typing import Generator, Optional, Tuple
-from core.pipeline import AttentionPipeline
-from services.video_recorder import VideoRecorder
-from windows_performance_config import (
+from ..core.pipeline import AttentionPipeline
+from .video_recorder import VideoRecorder
+from .windows_performance_config import (
     get_windows_optimized_config, 
     apply_windows_optimizations,
     get_optimal_camera_backend,
