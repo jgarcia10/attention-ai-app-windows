@@ -41,14 +41,30 @@ A production-ready system for real-time and offline analysis of audience attenti
    cd attention-app
    ```
 
-2. **Start the application:**
+2. **Quick setup (Linux/Mac):**
    ```bash
-   docker-compose up --build
+   chmod +x docker-setup.sh
+   ./docker-setup.sh
    ```
 
-3. **Access the application:**
-   - Frontend: http://localhost:5173
+   **Quick setup (Windows):**
+   ```cmd
+   docker-setup.bat
+   ```
+
+3. **Manual setup:**
+   ```bash
+   # Create necessary directories
+   mkdir -p backend/uploads backend/output backend/recordings backend/reports
+   
+   # Build and start services
+   docker-compose up --build -d
+   ```
+
+4. **Access the application:**
+   - Frontend: http://localhost
    - Backend API: http://localhost:8000
+   - Health Check: http://localhost:8000/api/health
 
 ### Local Development
 
@@ -304,6 +320,37 @@ pip install mediapipe==0.10.7
 # Linux: Add user to video group
 sudo usermod -a -G video $USER
 # Logout and login again
+```
+
+**Docker Issues:**
+
+**Docker Build Fails:**
+```bash
+# Clean Docker cache and rebuild
+docker system prune -a
+docker-compose build --no-cache
+```
+
+**Model Download Fails in Docker:**
+```bash
+# Check if the model download step completed
+docker-compose logs backend | grep -i "yolo\|model"
+```
+
+**Frontend Not Loading:**
+```bash
+# Check if frontend container is running
+docker-compose ps frontend
+# View frontend logs
+docker-compose logs frontend
+```
+
+**Port Already in Use:**
+```bash
+# Check what's using the ports
+netstat -tulpn | grep :80
+netstat -tulpn | grep :8000
+# Stop conflicting services or change ports in docker-compose.yml
 ```
 
 #### Frontend Issues
