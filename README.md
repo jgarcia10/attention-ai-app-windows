@@ -88,12 +88,20 @@ A production-ready system for real-time and offline analysis of audience attenti
 
 4. **Download the YOLO model:**
    ```bash
+   # Option 1: Using the setup script (requires ultralytics)
    python3 setup_model.py
+   
+   # Option 2: Using the simple download script (only requires requests)
+   python3 download_model.py
    ```
 
 5. **Set environment variables:**
    ```bash
+   # When running from backend directory:
    export YOLO_MODEL_PATH=./models/yolov8n.pt
+   
+   # When running from root directory:
+   export YOLO_MODEL_PATH=backend/models/yolov8n.pt
    export CONF_THRESHOLD=0.4
    export YAW_T=20
    export PITCH_T=15

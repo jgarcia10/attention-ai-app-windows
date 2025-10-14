@@ -11,8 +11,10 @@ from ultralytics import YOLO
 
 def download_yolo_model():
     """Download YOLOv8n model to the models directory."""
-    models_dir = Path("backend/models")
-    models_dir.mkdir(exist_ok=True)
+    # Get the absolute path to ensure we're working from the correct directory
+    script_dir = Path(__file__).parent.absolute()
+    models_dir = script_dir / "backend" / "models"
+    models_dir.mkdir(parents=True, exist_ok=True)
     
     model_path = models_dir / "yolov8n.pt"
     
@@ -21,15 +23,17 @@ def download_yolo_model():
         return str(model_path)
     
     print("📥 Downloading YOLOv8n model...")
+    print(f"📁 Target directory: {models_dir}")
     try:
-        # Download the model
-        model = YOLO("yolov8n.pt")
+        # Download the model to a temporary location first
+        temp_model = YOLO("yolov8n.pt")
         # Save it to our models directory
-        model.save(str(model_path))
+        temp_model.save(str(model_path))
         print(f"✅ YOLO model downloaded successfully to {model_path}")
         return str(model_path)
     except Exception as e:
         print(f"❌ Error downloading YOLO model: {e}")
+        print(f"💡 Make sure you have internet connection and ultralytics is installed")
         sys.exit(1)
 
 if __name__ == "__main__":
