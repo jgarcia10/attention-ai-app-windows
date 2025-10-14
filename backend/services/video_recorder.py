@@ -9,7 +9,7 @@ import os
 from datetime import datetime
 from typing import Dict, List, Any, Optional, Tuple
 from pathlib import Path
-from .attention_tracker import AttentionTracker
+from services.attention_tracker import AttentionTracker
 
 
 class VideoRecorder:

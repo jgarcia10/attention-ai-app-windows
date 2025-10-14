@@ -9,12 +9,12 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import threading
 
-from .core.pipeline import AttentionPipeline
-from .services.stream import VideoStreamer
-from .services.multi_camera_streamer import MultiCameraStreamer
-from .services.camera_detector import CameraDetector
-from .services.video_job import VideoJobManager
-from .schemas.dto import (
+from core.pipeline import AttentionPipeline
+from services.stream import VideoStreamer
+from services.multi_camera_streamer import MultiCameraStreamer
+from services.camera_detector import CameraDetector
+from services.video_job import VideoJobManager
+from schemas.dto import (
     HealthResponse, StreamRequest, StatsResponse, JobCreateResponse,
     JobStatusResponse, ErrorResponse, ConfigResponse, ConfigUpdateRequest
 )
@@ -283,7 +283,7 @@ def test_camera(camera_id):
         print(f"⚡ Testing camera {camera_id} with extended timeout...")
         
         # Use simple camera manager with longer timeout for better reliability
-        from .services.simple_camera_manager import SimpleCameraManager
+        from services.simple_camera_manager import SimpleCameraManager
         simple_manager = SimpleCameraManager()
         
         # Use longer timeout based on camera ID (camera 2 needs more time)
@@ -318,7 +318,7 @@ def fast_camera_test():
     try:
         print("⚡ Fast camera test endpoint called with extended timeouts...")
         
-        from .services.simple_camera_manager import SimpleCameraManager
+        from services.simple_camera_manager import SimpleCameraManager
         simple_manager = SimpleCameraManager()
         
         results = []
@@ -368,7 +368,7 @@ def simple_camera_test():
     try:
         print("🔧 Simple camera test endpoint called with extended timeouts...")
         
-        from .services.simple_camera_manager import SimpleCameraManager
+        from services.simple_camera_manager import SimpleCameraManager
         simple_manager = SimpleCameraManager()
         
         results = []
@@ -712,7 +712,7 @@ def generate_report():
             ).model_dump()), 400
         
         # Import here to avoid circular imports
-        from .services.report_generator import ReportGenerator
+        from services.report_generator import ReportGenerator
         
         # Get recording information
         recording_info = None

@@ -7,10 +7,10 @@ import time
 import threading
 import signal
 from typing import Generator, Optional, Dict, List, Any
-from ..core.pipeline import AttentionPipeline
-from .isolated_camera_processor import IsolatedMultiCameraManager
-from .video_recorder import VideoRecorder, MultiCameraVideoRecorder
-from .simple_camera_manager import SimpleCameraManager
+from core.pipeline import AttentionPipeline
+from services.isolated_camera_processor import IsolatedMultiCameraManager
+from services.video_recorder import VideoRecorder, MultiCameraVideoRecorder
+from services.simple_camera_manager import SimpleCameraManager
 
 
 class MultiCameraStreamer:

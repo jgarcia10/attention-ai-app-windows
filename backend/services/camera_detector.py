@@ -7,7 +7,7 @@ import platform
 import subprocess
 import re
 from typing import List, Dict, Any
-from .simple_camera_manager import SimpleCameraManager
+from services.simple_camera_manager import SimpleCameraManager
 
 
 class CameraDetector:
